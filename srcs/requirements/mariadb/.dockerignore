@@ -1,0 +1,13 @@
+*.env
+
+*.log
+
+.cache
+
+conf/
+
+tools/
+
+build/
+
+.DS_Store

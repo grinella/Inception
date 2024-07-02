@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+    mariadb:
+        container_name: mariadb
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+            MYSQL_DATABASE: mariadb
+            MYSQL_USER: gigiri
+            MYSQL_PASSWORD: 4321
+        build:
+            context: ./requirements/mariadb
+        ports:
+            - "3306:3306"
+        volumes:
+            - mariadb_data:/var/lib/mysql
+
+    nginx:
+        container_name: nginx
+        build:
+            context: ./requirements/nginx
+        ports:
+            - "80:80"
+        volumes:
+            - nginx_conf:/etc/nginx/conf.d
+        depends_on:
+            - wordpress
+
+    wordpress:
+        container_name: wordpress
+        build:
+            context: ./requirements/wordpress
+        environment:
+            WORDPRESS_DB_HOST: mariadb
+            WORDPRESS_DB_USER: gigiri
+            WORDPRESS_DB_PASSWORD: 4321
+            WORDPRESS_DB_NAME: mariadb
+        ports:
+            - "8000:80"
+        volumes:
+            - wordpress_data:/var/www/html
+        depends_on:
+            - mariadb
+
+volumes:
+    mariadb_data:
+    nginx_conf:
+    wordpress_data:
