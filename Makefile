@@ -1,10 +1,10 @@
 all : up
 
 up : 
-	@docker-compose -f ./srcs/docker-compose.yml up -d
+	@sudo docker-compose -f ./srcs/docker-compose.yml up --build
 
 down : 
-	@docker-compose -f ./srcs/docker-compose.yml down
+	@sudo docker-compose -f ./srcs/docker-compose.yml down
 
 stop : 
 	@docker-compose -f ./srcs/docker-compose.yml stop
@@ -14,3 +14,6 @@ start :
 
 status : 
 	@docker ps
+
+
+
