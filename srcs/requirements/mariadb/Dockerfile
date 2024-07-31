@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bullseye-slim
 
 # RUN sudo chown -R 999:999 ./requirements/mariadb/data
 RUN apt-get update && apt-get install -y mariadb-server && apt-get clean
@@ -10,14 +10,14 @@ COPY tools/script.sh usr/local/bin/script.sh
 RUN chmod +x usr/local/bin/script.sh
 
 #esegue lo script.sh per inizializzare il db
-CMD [ "sh", "/usr/local/bin/script.sh" ]
+# CMD /usr/local/bin/script.sh
 #RUN /usr/local/bin/script.sh
 
 # Usa l'utente mysql per eseguire il server
-USER mysql
+# USER mysql
 
-ENTRYPOINT ["mysqld"]
-
+# ENTRYPOINT ["mysqld"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/script.sh && mysqld"]
 
 
 

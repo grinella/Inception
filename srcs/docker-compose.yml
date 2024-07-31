@@ -1,10 +1,11 @@
+# version: '3.8'
+
 services:
     mariadb:
         container_name: mariadb
         build:
             context: ./requirements/mariadb
             dockerfile: Dockerfile
-        # image: mariadb:42
         ports:
             - "3306:3306"
         environment:
@@ -14,7 +15,7 @@ services:
             MYSQL_PASSWORD: 1234
         volumes:
             - mariadb_data:/var/lib/mysql
-        restart: unless-stopped
+        restart: always
 
     nginx:
         container_name: nginx
