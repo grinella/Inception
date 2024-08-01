@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bullseye
 
 # RUN sudo chown -R 999:999 ./requirements/mariadb/data
 RUN apt-get update && apt-get install -y mariadb-server && apt-get clean

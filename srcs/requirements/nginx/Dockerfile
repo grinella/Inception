@@ -1,6 +1,13 @@
-FROM nginx:latest
+FROM debian:bullseye
 
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+RUN apt-get update && \
+    apt-get install -y \
+    nginx \
+    bash \
+    openssl \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 # COPY ./tools/script.sh /entrypoint.sh
 COPY ./tools/script.sh /docker-entrypoint.d/10-config.sh
 
@@ -9,5 +16,5 @@ RUN mkdir -p /etc/nginx/sites-available && \
 
 EXPOSE 443
 
-CMD ["nginx", "-g", "daemon off;"]
-# ENTRYPOINT [ "sh","entrypoint.sh" ]
+# CMD ["nginx", "-g", "daemon off;"]
+CMD [ "sh","script.sh" ]
