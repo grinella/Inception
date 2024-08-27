@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+while ! mysql -h${} -u${MYSQL_USER} -p${} ${} -e ";" &>
 
 # create directory to use in nginx container later and also to setup the wordpress conf
 mkdir /var/www/html

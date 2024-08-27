@@ -1,6 +1,5 @@
 #!/bin/bash
-
-set -e
+mysqld --bind-address=127.0.0.1 --user=root --data-dir=/data --skip-networking=0 & SQL_PID=$!
 
 # Avvia MariaDB in background
 mysqld_safe &
@@ -11,51 +10,14 @@ until mysqladmin ping >/dev/null 2>&1; do
 done
 
 # Esegui le query di inizializzazione
-mysql -e "CREATE DATABASE IF NOT EXISTS mariadb;"
-mysql -e "CREATE USER IF NOT EXISTS 'grinella'@'%' IDENTIFIED BY 'root';"
-mysql -e "GRANT ALL PRIVILEGES ON mariadb.* TO 'grinella'@'%';"
+echo "CREATE DATABASE IF NOT EXISTS mariadb;"
+echo "CREATE USER IF NOT EXISTS 'grinella'@'%' IDENTIFIED BY 'root';"
+echo "GRANT ALL PRIVILEGES ON mariadb.* TO 'grinella'@'%';"
 
 # Ferma MariaDB
 mysqladmin shutdown
 
-# Esci dallo script
-exit 0
+kill $SQL_PID
+wait $SQL_PID
 
-
-
-
-
-
-
-#---------------------------------------------
-
-# service mariadb start
-
-# echo "CREATE DATABASE IF NOT EXISTS mariadb;" | mariadb -u root -p1234
-# sleep .15
-
-# echo "CREATE USER IF NOT EXISTS 'grinella'@'%' IDENTIFIED BY 'root' ;" >> mariadb -u root -p1234
-# sleep .15
-
-# echo "GRANT ALL PRIVILEGES ON mariadb.* TO 'grinella'@'%' ;" >> mariadb -u root -p1234
-# sleep .15
-
-# service mariadb stop
-
-
-
-#--------------------------------------------------------------
-
-
-# service mariadb start
-
-# echo "CREATE DATABASE IF NOT EXISTS mariadb;" | mariadb -u root -p1234
-# sleep .15
-
-# echo "CREATE USER IF NOT EXISTS 'grinella'@'%' IDENTIFIED BY 'root';" | mariadb -u root -p1234
-# sleep .15
-
-# echo "GRANT ALL PRIVILEGES ON mariadb.* TO 'grinella'@'%';" | mariadb -u root -p1234
-# sleep .15
-
-# service mariadb stop
+mysqld --bind-address=127.0.0.1 --user=root --data-dir=/data --skip-networking=0

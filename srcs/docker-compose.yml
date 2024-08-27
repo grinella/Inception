@@ -1,29 +1,27 @@
-# version: '3.8'
+version: '3.8'
 
 services:
     mariadb:
-        container_name: mariadb
-        build:
-            context: ./requirements/mariadb
-            dockerfile: Dockerfile
-        ports:
-            - "3306:3306"
-        environment:
-            MYSQL_ROOT_PASSWORD: 1234
-            MYSQL_DATABASE: mariadb
-            MYSQL_USER: gigiri
-            MYSQL_PASSWORD: 1234
+        # container_name: mariadb
+        build: ./requirements/mariadb
+        # ports:
+        #     - "3306:3306"
+        # environment:
+        #     MYSQL_ROOT_PASSWORD: 1234
+        #     MYSQL_DATABASE: mariadb
+        #     MYSQL_USER: gigiri
+        #     MYSQL_PASSWORD: 1234
         volumes:
             - mariadb_data:/var/lib/mysql
         networks:
             - inception_network
+        env_file:
+            - .env
         restart: always
 
     nginx:
         container_name: nginx
-        build:
-            context: ./requirements/nginx
-            dockerfile: Dockerfile
+        build: ./requirements/nginx
         ports:
             - "443:443"
         volumes:
@@ -36,30 +34,29 @@ services:
         restart: always
 
     wordpress:
-        container_name: wordpress
-        build:
-            context: ./requirements/wordpress
-            dockerfile: Dockerfile
+        # container_name: wordpress
+        build: ./requirements/wordpress
         # image: wordpress:42
-        environment:
-            WORDPRESS_DB_HOST: mariadb
-            WORDPRESS_DB_USER: gigiri
-            WORDPRESS_DB_PASSWORD: 4321
-            WORDPRESS_DB_NAME: mariadb
-        ports:
-            - "9000:9000"
+        # environment:
+        #     WORDPRESS_DB_HOST: mariadb
+        #     WORDPRESS_DB_USER: gigiri
+        #     WORDPRESS_DB_PASSWORD: 4321
+        #     WORDPRESS_DB_NAME: mariadb
+        # ports:
+        #     - "9000:9000"
         volumes:
             - wordpress_data:/var/www/html
         networks:
             - inception_network
+        env_file:
+            - .env
         depends_on:
             - mariadb
+        restart: always
 
 volumes:
     mariadb_data:
-    nginx_conf:
     wordpress_data:
 
 networks:
   inception_network:
-    # driver: bridge
