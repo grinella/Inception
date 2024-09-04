@@ -3,10 +3,10 @@ all : up
 up : 
 	@docker-compose -f ./srcs/docker-compose.yml up --build
 
-down : 
-	@docker-compose -f ./srcs/docker-compose.yml down
+down :
+	@docker-compose -f ./srcs/docker-compose.yml down -v
 	@docker rmi $$(docker images -q)
-	@docker system prune -f ./srcs/docker-compose.yml
+	@docker system prune -a
 
 stop : 
 	@docker-compose -f ./srcs/docker-compose.yml stop
