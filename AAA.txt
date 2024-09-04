@@ -32,3 +32,25 @@ E: The repository 'https://download.docker.com/linux/ubuntu jammy InRelease' is 
 N: Updating from such a repository can't be done securely, and is therefore disabled by default.
 N: See apt-secure(8) manpage for repository creation and user configuration details.
 lubuntu@lubuntu:~$
+
+
+
+
+
+
+
+lubuntu@lubuntu:~/Desktop/Inception$ sudo apt update
+Ign:1 cdrom://Lubuntu 22.04.4 LTS _Jammy Jellyfish_ - Release amd64 (20240216) jammy InRelease
+Hit:2 cdrom://Lubuntu 22.04.4 LTS _Jammy Jellyfish_ - Release amd64 (20240216) jammy Release
+Get:3 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Hit:4 http://archive.ubuntu.com/ubuntu jammy InRelease                              
+Get:5 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]             
+Get:6 https://download.docker.com/linux/ubuntu jammy InRelease [48.8 kB]            
+Err:6 https://download.docker.com/linux/ubuntu jammy InRelease                      
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 7EA0A9C3F273FCD8
+Reading package lists... Done
+W: GPG error: https://download.docker.com/linux/ubuntu jammy InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 7EA0A9C3F273FCD8
+E: The repository 'https://download.docker.com/linux/ubuntu jammy InRelease' is not signed.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+lubuntu@lubuntu:~/Desktop/Inception$ 
