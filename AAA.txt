@@ -54,3 +54,14 @@ E: The repository 'https://download.docker.com/linux/ubuntu jammy InRelease' is 
 N: Updating from such a repository can't be done securely, and is therefore disabled by default.
 N: See apt-secure(8) manpage for repository creation and user configuration details.
 lubuntu@lubuntu:~/Desktop/Inception$ 
+
+
+
+
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io -y
+
+sudo docker run hello-world
