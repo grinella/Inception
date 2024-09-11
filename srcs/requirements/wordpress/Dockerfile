@@ -20,3 +20,4 @@ RUN	apk update && \
     # sed -i "s|;listen.group = nobody|listen.group = nobody|g" /etc/php82/php-fpm.d/www.conf
 
 CMD ["/bin/sh", "configure.sh"]
+
