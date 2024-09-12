@@ -5,7 +5,7 @@ up :
 
 down :
 	@docker-compose -f ./srcs/docker-compose.yml down -v
-	@docker rmi $$(docker images -q)
+	@docker rmi $(docker images -q)
 	@docker system prune -a
 
 stop : 
