@@ -10,4 +10,4 @@ COPY tools/script.sh /etc/nginx/script.sh
 
 EXPOSE 443
 
-ENTRYPOINT [ "/bin/sh","/tools/script.sh" ]
+ENTRYPOINT [ "/bin/sh","/etc/nginx/script.sh" ]
