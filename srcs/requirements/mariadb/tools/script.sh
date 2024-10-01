@@ -4,6 +4,8 @@ mysql_install_db --user=root
 mysql_upgrade
 mysqld --bind-address=127.0.0.1 --user=root --datadir=/data --skip-networking=0 & SQL_PID=$!
 
+sleep 5
+
 # Avvia MariaDB in background
 # mysqld_safe &
 
@@ -17,6 +19,8 @@ echo "CREATE DATABASE IF NOT EXISTS test;" | mysql -u root
 echo "CREATE USER IF NOT EXISTS 'grinella'@'%' IDENTIFIED BY 'root';" | mysql -u root
 echo "GRANT ALL PRIVILEGES ON test.* TO 'grinella'@'%';" | mysql -u root
 
+echo "FLUSH PRIVILEGES;" | mysql -u root
+
 
 # Ferma MariaDB
 # mysqladmin shutdown
@@ -24,4 +28,4 @@ echo "GRANT ALL PRIVILEGES ON test.* TO 'grinella'@'%';" | mysql -u root
 kill $SQL_PID
 wait $SQL_PID
 
-mysqld --bind-address=127.0.0.1 --user=root --datadir=/data --skip-networking=0
+mysqld --bind-address=0.0.0.0 --user=root --datadir=/data --skip-networking=0
