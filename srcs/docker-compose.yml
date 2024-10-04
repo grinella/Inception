@@ -4,13 +4,17 @@ services:
     mariadb:
         # container_name: mariadb
         build: ./requirements/mariadb
-        # ports:
-        #     - "3306:3306"
-        # environment:
-        #     MYSQL_ROOT_PASSWORD: 1234
-        #     MYSQL_DATABASE: mariadb
-        #     MYSQL_USER: gigiri
-        #     MYSQL_PASSWORD: 1234
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+            MYSQL_DATABASE: mariadb
+            MYSQL_USER: gigiri
+            MYSQL_PASSWORD: 1234
+            DB_NAME: wordpress
+            DB_USER: gigiri
+            DB_PASSWORD: 1234
+            DB_HOST: mariadb
         volumes:
             - mariadb_data:/data
         networks:
@@ -42,8 +46,8 @@ services:
         #     WORDPRESS_DB_USER: gigiri
         #     WORDPRESS_DB_PASSWORD: 4321
         #     WORDPRESS_DB_NAME: mariadb
-        # ports:
-        #     - "9000:9000"
+        ports:
+            - "9000:9000"
         volumes:
             - wordpress_data:/var/www/html
         networks:
