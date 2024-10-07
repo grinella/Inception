@@ -1,20 +1,9 @@
-version: '3.9'
-
 services:
     mariadb:
-        # container_name: mariadb
+        container_name: mariadb
         build: ./requirements/mariadb
-        ports:
-            - "3306:3306"
-        environment:
-            MYSQL_ROOT_PASSWORD: 1234
-            MYSQL_DATABASE: mariadb
-            MYSQL_USER: gigiri
-            MYSQL_PASSWORD: 1234
-            DB_NAME: wordpress
-            DB_USER: gigiri
-            DB_PASSWORD: 1234
-            DB_HOST: mariadb
+        expose:
+            - 3306
         volumes:
             - mariadb_data:/data
         networks:
@@ -38,16 +27,10 @@ services:
         restart: always
 
     wordpress:
-        # container_name: wordpress
+        container_name: wordpress
         build: ./requirements/wordpress
-        # image: wordpress:42
-        # environment:
-        #     WORDPRESS_DB_HOST: mariadb
-        #     WORDPRESS_DB_USER: gigiri
-        #     WORDPRESS_DB_PASSWORD: 4321
-        #     WORDPRESS_DB_NAME: mariadb
-        ports:
-            - "9000:9000"
+        expose:
+            - 9000
         volumes:
             - wordpress_data:/var/www/html
         networks:
@@ -60,7 +43,20 @@ services:
 
 volumes:
     mariadb_data:
+        name: mariadb_data
+        driver: local
+        driver_opts:
+            type: none
+            device: /Users/Gabriele/Inception/mariadb_data
+            o: bind
     wordpress_data:
+        name: wordpress_data
+        driver: local
+        driver_opts:
+            type: none
+            device: /Users/Gabriele/Inception/wordpress_data
+            o: bind
 
 networks:
   inception_network:
+    name: inception_network

@@ -1,8 +1,8 @@
-FROM alpine:3.17.5
+FROM debian:bullseye
 
-#RUN apk update && apk add -y mariadb-server
-# da testare: --no-cache
-RUN apk update && apk add mysql mysql-client
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install mariadb-server -y
 
 # COPY conf/my.cnf /etc/mysql/mariadb.conf.d/my.cnf
 COPY tools/script.sh /setup_data/script.sh
@@ -13,4 +13,4 @@ RUN mkdir /run/mysqld
 
 EXPOSE 3306
 
-CMD ["/bin/sh", "/setup_data/script.sh"]
+CMD ["/bin/bash", "/setup_data/script.sh"]

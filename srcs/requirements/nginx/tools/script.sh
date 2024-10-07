@@ -10,7 +10,5 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -out /etc/ssl/certs/nginx-selfsigned.crt \
     -subj "/C=IT/L=Roma/O=42Roma/OU=student/CN=grinella.42.fr"
 
-tail -f
-
 # Esegui NGINX
 nginx -g "daemon off;"
