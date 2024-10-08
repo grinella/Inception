@@ -1,23 +1,21 @@
+
 all : up
 
-up : 
-	@docker-compose -f ./srcs/docker-compose.yml up --build
+up :
+	@sudo docker-compose -f ./srcs/docker-compose.yml up --build
 
 down :
-	@docker-compose -f ./srcs/docker-compose.yml down -v
-	@docker rmi $$(docker images -q)
+	@sudo docker-compose -f ./srcs/docker-compose.yml down -v
+	@sudo docker rmi $$(docker images -q)
 
 prune:
-	@docker system prune -a
+	@sudo docker system prune -a
 
 stop : 
-	@docker-compose -f ./srcs/docker-compose.yml stop
+	@sudo docker-compose -f ./srcs/docker-compose.yml stop
 
 start : 
-	@docker-compose -f ./srcs/docker-compose.yml start
+	@sudo docker-compose -f ./srcs/docker-compose.yml start
 
 status : 
-	@docker ps
-
-
-
+	@sudo docker ps
