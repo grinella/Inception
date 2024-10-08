@@ -47,14 +47,14 @@ volumes:
         driver: local
         driver_opts:
             type: none
-            device: /Users/Gabriele/Inception/mariadb_data
+            device: /home/gdungdiung/Desktop/Inception/mariadb_data
             o: bind
     wordpress_data:
         name: wordpress_data
         driver: local
         driver_opts:
             type: none
-            device: /Users/Gabriele/Inception/wordpress_data
+            device: /home/gdungdiung/Desktop/Inception/wordpress_data
             o: bind
 
 networks:
