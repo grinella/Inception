@@ -6,11 +6,11 @@ mkdir -p /run/php
 
 if [ ! -f "wp-config.php" ]; then
 	wp config create 	--dbhost=mariadb:3306 --dbname=$MARIADB_DATABASE \
-						--dbuser=$ADMIN_USER --dbpass=$ADMIN_PASSWORD \
+						--dbuser=$MARIADB_USER --dbpass=$MARIADB_USER_PASSWORD \
 						--path="/var/www/html" --allow-root
 
 	wp core install	--url=$WP_URL --title=$WP_TITLE \
-					--admin_user=$WP_ADMIN --admin_password=$ADMIN_PASSWORD \
+					--admin_user=$WP_ADMIN --admin_password=$WP__ADMIN_PASSWORD \
 					--admin_email="$WP_ADMIN_EMAIL" --allow-root
 
 	wp user create	$WP_USER "$WP_USER_EMAIL" --user_pass=$WP_USER_PASSWORD \

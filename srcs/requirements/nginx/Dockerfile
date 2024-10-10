@@ -5,11 +5,17 @@ RUN apt-get upgrade -y
 RUN apt install -y nginx openssl
 
 RUN mkdir -p /etc/nginx/ssl
-#RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt -subj "/C=IT/ST=Italy/L=Rome/O=42/OU=42/CN=grinella.42.fr"
+RUN mkdir -p /var/log/nginx/inception_logs
+RUN mkdir -p /var/nginx
+RUN mkdir -p /var/www/html
+RUN chmod 755 /var/www/html
+RUN chown -R www-data:www-data /var/www/html
 
-COPY conf/test.conf /etc/nginx/http.d/
+COPY conf/test.conf /etc/nginx/nginx.conf
 COPY tools/script.sh /etc/nginx/script.sh
 
 EXPOSE 443
+
+# RUN unset MARIADB_USER_PASSWORD MARIADB_ROOT_PASSWORD WP_ADMIN_PASSWORD WP_USER_PASSWORD
 
 ENTRYPOINT [ "/bin/sh","/etc/nginx/script.sh" ]
