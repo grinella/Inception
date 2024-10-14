@@ -49,7 +49,7 @@ volumes:
         name: mariadb_data
         driver: local
         driver_opts:
-            device: /home/$USER/data/mariadb_data
+            device: /home/gdungdiung/data/mariadb_data
               #device: /Users/Gabriele/Inception/mariadb_data
             o: bind
             type: none
@@ -57,7 +57,7 @@ volumes:
         name: wordpress_data
         driver: local
         driver_opts:
-            device: /home/$USER/data/wordpress_data
+            device: /home/gdungdiung/data/wordpress_data
               #device: /Users/Gabriele/Inception/wordpress_data
             o: bind
             type: none
